@@ -1,10 +1,6 @@
 'use strict';
 
-function getRunTime(fn, input){
-  const {ticks, result} = fn(input);
-  console.log(`With input of size ${input}, ${fn.name} ` +
-  `clocked ${ticks} ticks to generate result of ${result}.`);
-}
+
 
 //this is constant
 
@@ -163,4 +159,37 @@ function isEven(value){
 //     if (n % i == 0) return false;
 //   }
 //   return true;
-// }
+// }\
+
+function getRunTime(fn, input){
+  const {ticks, result} = fn(input);
+  console.log(result);
+  console.log(`With input of size ${input}, ${fn.name} ` +
+  `clocked ${ticks} ticks to generate result of ${result}.`);
+}
+
+function fibonacci(n, ticks = 0) {
+  // Base case
+  if (n <= 0) {
+    ticks++;
+    return {
+      result: 0,
+      ticks
+    };
+  }
+  // Base case
+  if (n <= 2) {
+    ticks++;
+    return{
+      result: 1,
+      ticks
+    };
+  }	
+  // Recursive case
+  return {
+    result: fibonacci((n - 1), ticks++) + fibonacci((n - 2), ticks++),
+    ticks
+  };
+}
+
+getRunTime(fibonacci, 23);
